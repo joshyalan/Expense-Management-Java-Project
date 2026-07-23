@@ -88,7 +88,9 @@ public class DashboardView extends JFrame {
         sidebarPanel.add(Box.createRigidArea(new Dimension(0, 8)));
         sidebarPanel.add(createSidebarButton("Transactions", "transactionsCard"));
         sidebarPanel.add(Box.createRigidArea(new Dimension(0, 8)));
-        sidebarPanel.add(createSidebarButton("Budgets & Goals", "budgetsCard"));
+        sidebarPanel.add(createSidebarButton("Budgets", "budgetsCard"));
+        sidebarPanel.add(Box.createRigidArea(new Dimension(0, 8)));
+        sidebarPanel.add(createSidebarButton("Savings Goals", "goalsCard"));
         sidebarPanel.add(Box.createRigidArea(new Dimension(0, 8)));
         sidebarPanel.add(createSidebarButton("Reports", "reportsCard"));
         sidebarPanel.add(Box.createRigidArea(new Dimension(0, 8)));
@@ -169,6 +171,7 @@ public class DashboardView extends JFrame {
         contentPanel.add(new AccountsPanel(), "accountsCard");
         contentPanel.add(new ExpensesPanel(), "transactionsCard");
         contentPanel.add(new BudgetsPanel(), "budgetsCard");
+        contentPanel.add(new GoalsPanel(), "goalsCard");
         contentPanel.add(new ReportsPanel(), "reportsCard");
         contentPanel.add(new SettingsPanel(), "settingsCard");
 
@@ -255,11 +258,11 @@ public class DashboardView extends JFrame {
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         content.setBackground(Theme.getBgPanel());
 
-        String[] insights = {
-            "You've spent 25% more on Dining this week.",
-            "Consider reducing Subscription expenses.",
-            "Great job! You saved $300 more than last month."
-        };
+        List<String> insights = new java.util.ArrayList<>();
+        if (SessionManager.isLoggedIn()) {
+            service.AnalyticsService as = new service.AnalyticsService();
+            insights = as.generateInsights(SessionManager.getCurrentUser().getId());
+        }
         
         for (String text : insights) {
             JPanel row = new JPanel(new BorderLayout(8, 0));

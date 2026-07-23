@@ -113,6 +113,14 @@ public class ExpensesPanel extends JPanel {
                 return this;
             }
         });
+        
+        // Context Menu
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem itemDuplicate = new JMenuItem("Duplicate Transaction");
+        itemDuplicate.setFont(Theme.fontBody());
+        itemDuplicate.addActionListener(e -> duplicateSelectedExpense());
+        popupMenu.add(itemDuplicate);
+        table.setComponentPopupMenu(popupMenu);
 
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -172,6 +180,46 @@ public class ExpensesPanel extends JPanel {
                 ToastNotification.show((JFrame) SwingUtilities.getWindowAncestor(this), successCount + " transactions deleted.", ToastNotification.SUCCESS);
                 // Call Dashboard refresh instead of local if possible, but for now local is fine
                 loadExpenses();
+            }
+        }
+    }
+    
+    private void duplicateSelectedExpense() {
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow == -1) {
+            ToastNotification.show((JFrame) SwingUtilities.getWindowAncestor(this), "Please select an expense to duplicate.", ToastNotification.WARNING);
+            return;
+        }
+        
+        int modelRow = table.convertRowIndexToModel(selectedRow);
+        int id = (int) tableModel.getValueAt(modelRow, 0);
+        
+        List<Expense> expenses = expenseDAO.getAllExpensesByUser(SessionManager.getCurrentUser().getId());
+        Expense toDuplicate = null;
+        for (Expense e : expenses) {
+            if (e.getId() == id) {
+                toDuplicate = e;
+                break;
+            }
+        }
+        
+        if (toDuplicate != null) {
+            Expense newExp = new Expense(
+                toDuplicate.getUserId(),
+                toDuplicate.getAccountId(),
+                toDuplicate.getCategoryId(),
+                toDuplicate.getAmount(),
+                toDuplicate.getDate(),
+                toDuplicate.getTime(),
+                toDuplicate.getDescription() + " (Copy)",
+                toDuplicate.getReceiptPath()
+            );
+            
+            if (expenseDAO.addExpense(newExp)) {
+                ToastNotification.show((JFrame) SwingUtilities.getWindowAncestor(this), "Transaction duplicated!", ToastNotification.SUCCESS);
+                loadExpenses();
+            } else {
+                ToastNotification.show((JFrame) SwingUtilities.getWindowAncestor(this), "Failed to duplicate.", ToastNotification.ERROR);
             }
         }
     }
