@@ -92,7 +92,9 @@ public class ReportGenerator {
                 sb.append(e.getDate().toString()).append(",");
                 sb.append(e.getCategoryId()).append(",");
                 
-                String desc = e.getDescription() != null ? e.getDescription().replace(",", ";") : "";
+                String desc = e.getDescription() != null ? e.getDescription() : "";
+                // Escape quotes and wrap in quotes to handle commas and newlines
+                desc = "\"" + desc.replace("\"", "\"\"") + "\"";
                 sb.append(desc).append(",");
                 sb.append(String.format("%.2f", e.getAmount())).append("\n");
             }

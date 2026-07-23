@@ -2,16 +2,21 @@ package view;
 
 import controller.AuthController;
 import com.formdev.flatlaf.FlatClientProperties;
+import utils.ui.Theme;
+import utils.ui.RoundedPanel;
+import utils.ui.ToastNotification;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.regex.Pattern;
 
 /**
- * Modern Registration GUI View.
- * Built with FlatLaf for a production-ready, clean fintech aesthetic.
+ * Premium Registration GUI View.
  */
 public class RegisterView extends JFrame {
     private JTextField txtUsername;
@@ -35,106 +40,181 @@ public class RegisterView extends JFrame {
 
     private void initFrame() {
         setTitle("Expense Tracker Pro - Register");
-        setSize(500, 550);
+        setSize(550, 750);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); 
         setLayout(new BorderLayout());
+        getContentPane().setBackground(Theme.getBgApp());
+        
+        getRootPane().putClientProperty(FlatClientProperties.TITLE_BAR_BACKGROUND, Theme.getBgApp());
+        getRootPane().putClientProperty(FlatClientProperties.TITLE_BAR_FOREGROUND, Theme.getTextPrimary());
     }
 
     private void initComponents() {
         JPanel wrapperPanel = new JPanel(new GridBagLayout());
+        wrapperPanel.setBackground(Theme.getBgApp());
         
-        JPanel cardPanel = new JPanel(new GridBagLayout());
-        cardPanel.putClientProperty(FlatClientProperties.STYLE, 
-            "arc: 20;" +
-            "background: $Panel.background;" +
-            "border: 15,25,15,25");
+        RoundedPanel cardPanel = new RoundedPanel(Theme.RADIUS_LG, Theme.getBgPanel());
+        cardPanel.setLayout(new GridBagLayout());
+        cardPanel.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(Theme.getBorder(), 1),
+            new EmptyBorder(30, 40, 30, 40)
+        ));
         
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(8, 15, 8, 15);
+        gbc.insets = new Insets(0, 0, 15, 0);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
 
         // Title
         JLabel titleLabel = new JLabel("Create an Account", SwingConstants.CENTER);
-        titleLabel.putClientProperty(FlatClientProperties.STYLE, "font: bold +10");
+        titleLabel.setFont(Theme.fontHeading1());
+        titleLabel.setForeground(Theme.getTextPrimary());
+        gbc.insets = new Insets(0, 0, 8, 0);
         cardPanel.add(titleLabel, gbc);
 
         // Subtitle
         gbc.gridy++;
         JLabel subtitleLabel = new JLabel("Join us to start tracking your expenses", SwingConstants.CENTER);
-        subtitleLabel.putClientProperty(FlatClientProperties.STYLE, "foreground: $Label.disabledForeground");
+        subtitleLabel.setFont(Theme.fontBody());
+        subtitleLabel.setForeground(Theme.getTextMuted());
+        gbc.insets = new Insets(0, 0, 24, 0);
         cardPanel.add(subtitleLabel, gbc);
 
-        // Full Name Field
+        // Full Name
         gbc.gridy++;
-        txtFullName = new JTextField();
-        txtFullName.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Full Name");
+        gbc.insets = new Insets(0, 0, 4, 0);
+        cardPanel.add(createLabel("Full Name"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 0, 16, 0);
+        txtFullName = createTextField("e.g. Jane Doe");
         cardPanel.add(txtFullName, gbc);
 
-        // Email Field
+        // Email
         gbc.gridy++;
-        txtEmail = new JTextField();
-        txtEmail.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Email Address");
+        gbc.insets = new Insets(0, 0, 4, 0);
+        cardPanel.add(createLabel("Email Address"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 0, 4, 0);
+        txtEmail = createTextField("name@example.com");
         cardPanel.add(txtEmail, gbc);
 
         // Email Validation Label
         gbc.gridy++;
+        gbc.insets = new Insets(0, 0, 12, 0);
         lblEmailValidation = new JLabel(" ");
-        lblEmailValidation.putClientProperty(FlatClientProperties.STYLE, "font: -2");
+        lblEmailValidation.setFont(Theme.fontSmall());
         cardPanel.add(lblEmailValidation, gbc);
 
-        // Username Field
+        // Username
         gbc.gridy++;
-        txtUsername = new JTextField();
-        txtUsername.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Username");
+        gbc.insets = new Insets(0, 0, 4, 0);
+        cardPanel.add(createLabel("Username"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 0, 16, 0);
+        txtUsername = createTextField("Choose a username");
         cardPanel.add(txtUsername, gbc);
 
-        // Password Field
+        // Password
         gbc.gridy++;
-        txtPassword = new JPasswordField();
-        txtPassword.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Password");
-        txtPassword.putClientProperty(FlatClientProperties.STYLE, "showRevealButton: true");
+        gbc.insets = new Insets(0, 0, 4, 0);
+        cardPanel.add(createLabel("Password"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 0, 4, 0);
+        txtPassword = createPasswordField();
         cardPanel.add(txtPassword, gbc);
 
         // Password Strength Label
         gbc.gridy++;
+        gbc.insets = new Insets(0, 0, 12, 0);
         lblPasswordStrength = new JLabel(" ");
-        lblPasswordStrength.putClientProperty(FlatClientProperties.STYLE, "font: -2");
+        lblPasswordStrength.setFont(Theme.fontSmall());
         cardPanel.add(lblPasswordStrength, gbc);
 
-        // Confirm Password Field
+        // Confirm Password
         gbc.gridy++;
-        txtConfirmPassword = new JPasswordField();
-        txtConfirmPassword.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Confirm Password");
-        txtConfirmPassword.putClientProperty(FlatClientProperties.STYLE, "showRevealButton: true");
+        gbc.insets = new Insets(0, 0, 4, 0);
+        cardPanel.add(createLabel("Confirm Password"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 0, 24, 0);
+        txtConfirmPassword = createPasswordField();
         cardPanel.add(txtConfirmPassword, gbc);
 
         // Register Button
         gbc.gridy++;
+        gbc.insets = new Insets(0, 0, 16, 0);
         btnRegister = new JButton("Create Account");
+        btnRegister.setFont(Theme.fontBodyBold());
         btnRegister.putClientProperty(FlatClientProperties.STYLE, 
-            "background: @accentColor;" +
+            "background: " + String.format("#%06x", Theme.PRIMARY.getRGB() & 0xFFFFFF) + ";" +
             "foreground: #ffffff;" +
-            "arc: 10;" +
-            "font: bold");
+            "arc: 8;" +
+            "margin: 10,20,10,20;" +
+            "borderWidth: 0;" + 
+            "focusWidth: 0");
+        btnRegister.setCursor(new Cursor(Cursor.HAND_CURSOR));
         cardPanel.add(btnRegister, gbc);
 
         // Back to login
         gbc.gridy++;
+        gbc.insets = new Insets(0, 0, 0, 0);
         JPanel loginPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
-        loginPanel.add(new JLabel("Already have an account?"));
+        loginPanel.setOpaque(false);
+        JLabel lblAlready = new JLabel("Already have an account?");
+        lblAlready.setFont(Theme.fontBody());
+        lblAlready.setForeground(Theme.getTextMuted());
+        loginPanel.add(lblAlready);
+        
         btnBackToLogin = new JButton("Log In");
-        btnBackToLogin.putClientProperty(FlatClientProperties.STYLE, "buttonType: borderless; foreground: @accentColor");
+        btnBackToLogin.setFont(Theme.fontBodyBold());
+        btnBackToLogin.putClientProperty(FlatClientProperties.STYLE, 
+            "buttonType: borderless;" +
+            "foreground: " + String.format("#%06x", Theme.PRIMARY.getRGB() & 0xFFFFFF) + ";");
+        btnBackToLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
         loginPanel.add(btnBackToLogin);
+        
         cardPanel.add(loginPanel, gbc);
 
         wrapperPanel.add(cardPanel);
-        add(wrapperPanel, BorderLayout.CENTER);
+        
+        // Wrap the whole thing in a scroll pane just in case on smaller screens
+        JScrollPane scrollPane = new JScrollPane(wrapperPanel);
+        scrollPane.setBorder(null);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        add(scrollPane, BorderLayout.CENTER);
 
         setupListeners();
+    }
+    
+    private JLabel createLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setFont(Theme.fontBodyBold());
+        label.setForeground(Theme.getTextPrimary());
+        return label;
+    }
+    
+    private JTextField createTextField(String placeholder) {
+        JTextField field = new JTextField();
+        field.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, placeholder);
+        field.putClientProperty(FlatClientProperties.TEXT_FIELD_SHOW_CLEAR_BUTTON, true);
+        field.putClientProperty(FlatClientProperties.STYLE, "margin: 8,12,8,12; arc: 8;");
+        field.setFont(Theme.fontBody());
+        return field;
+    }
+    
+    private JPasswordField createPasswordField() {
+        JPasswordField field = new JPasswordField();
+        field.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "••••••••");
+        field.putClientProperty(FlatClientProperties.STYLE, "showRevealButton: true; margin: 8,12,8,12; arc: 8;");
+        field.setFont(Theme.fontBody());
+        return field;
     }
 
     private void setupListeners() {
@@ -158,18 +238,31 @@ public class RegisterView extends JFrame {
             public void removeUpdate(DocumentEvent e) { checkPasswordStrength(); }
             public void changedUpdate(DocumentEvent e) { checkPasswordStrength(); }
         });
+        
+        KeyAdapter enterListener = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    handleRegistration();
+                }
+            }
+        };
+        txtConfirmPassword.addKeyListener(enterListener);
     }
 
     private void validateEmail() {
         String email = txtEmail.getText();
         if (email.isEmpty()) {
             lblEmailValidation.setText(" ");
+            txtEmail.putClientProperty(FlatClientProperties.OUTLINE, null);
         } else if (EMAIL_PATTERN.matcher(email).matches()) {
             lblEmailValidation.setText("Valid email address");
-            lblEmailValidation.setForeground(new Color(46, 204, 113)); // Green
+            lblEmailValidation.setForeground(Theme.SUCCESS);
+            txtEmail.putClientProperty(FlatClientProperties.OUTLINE, Theme.SUCCESS);
         } else {
             lblEmailValidation.setText("Invalid email format");
-            lblEmailValidation.setForeground(new Color(231, 76, 60)); // Red
+            lblEmailValidation.setForeground(Theme.DANGER);
+            txtEmail.putClientProperty(FlatClientProperties.OUTLINE, Theme.DANGER);
         }
     }
 
@@ -177,37 +270,42 @@ public class RegisterView extends JFrame {
         String pw = new String(txtPassword.getPassword());
         if (pw.isEmpty()) {
             lblPasswordStrength.setText(" ");
+            txtPassword.putClientProperty(FlatClientProperties.OUTLINE, null);
         } else if (pw.length() < 6) {
             lblPasswordStrength.setText("Weak: Too short");
-            lblPasswordStrength.setForeground(new Color(231, 76, 60));
+            lblPasswordStrength.setForeground(Theme.DANGER);
+            txtPassword.putClientProperty(FlatClientProperties.OUTLINE, Theme.DANGER);
         } else if (pw.matches(".*\\d.*") && pw.matches(".*[A-Z].*")) {
             lblPasswordStrength.setText("Strong");
-            lblPasswordStrength.setForeground(new Color(46, 204, 113));
+            lblPasswordStrength.setForeground(Theme.SUCCESS);
+            txtPassword.putClientProperty(FlatClientProperties.OUTLINE, Theme.SUCCESS);
         } else {
             lblPasswordStrength.setText("Medium: Add numbers & uppercase");
-            lblPasswordStrength.setForeground(new Color(241, 196, 15));
+            lblPasswordStrength.setForeground(Theme.WARNING);
+            txtPassword.putClientProperty(FlatClientProperties.OUTLINE, Theme.WARNING);
         }
     }
 
     private void handleRegistration() {
-        String username = txtUsername.getText();
+        String username = txtUsername.getText().trim();
         String password = new String(txtPassword.getPassword());
         String confirm = new String(txtConfirmPassword.getPassword());
-        String email = txtEmail.getText();
-        String fullName = txtFullName.getText();
+        String email = txtEmail.getText().trim();
+        String fullName = txtFullName.getText().trim();
 
         if (username.isEmpty() || password.isEmpty() || email.isEmpty() || fullName.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            ToastNotification.show(this, "Please fill in all fields.", ToastNotification.WARNING);
             return;
         }
 
         if (!password.equals(confirm)) {
-            JOptionPane.showMessageDialog(this, "Passwords do not match.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            ToastNotification.show(this, "Passwords do not match.", ToastNotification.WARNING);
+            txtConfirmPassword.putClientProperty(FlatClientProperties.OUTLINE, Theme.DANGER);
             return;
         }
 
         if (!EMAIL_PATTERN.matcher(email).matches()) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid email address.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            ToastNotification.show(this, "Please enter a valid email address.", ToastNotification.WARNING);
             return;
         }
 
@@ -215,15 +313,22 @@ public class RegisterView extends JFrame {
         String otp = JOptionPane.showInputDialog(this, "An OTP has been sent to " + email + ".\nFor testing, enter '1234':", "Email Verification", JOptionPane.INFORMATION_MESSAGE);
         
         if (otp != null && otp.equals("1234")) {
-            if (authController.register(username, password, email, fullName)) {
-                JOptionPane.showMessageDialog(this, "Account created successfully! You can now log in.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                new LoginView().setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Registration failed. Username or email might already exist.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Invalid OTP. Registration aborted.", "Verification Failed", JOptionPane.ERROR_MESSAGE);
+            btnRegister.setText("Creating Account...");
+            btnRegister.setEnabled(false);
+            
+            SwingUtilities.invokeLater(() -> {
+                if (authController.register(username, password, email, fullName)) {
+                    ToastNotification.show(this, "Account created successfully! You can now log in.", ToastNotification.SUCCESS);
+                    new LoginView().setVisible(true);
+                    this.dispose();
+                } else {
+                    ToastNotification.show(this, "Registration failed. Username or email might already exist.", ToastNotification.ERROR);
+                    btnRegister.setText("Create Account");
+                    btnRegister.setEnabled(true);
+                }
+            });
+        } else if (otp != null) {
+            ToastNotification.show(this, "Invalid OTP. Registration aborted.", ToastNotification.ERROR);
         }
     }
 }

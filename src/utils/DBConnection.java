@@ -16,27 +16,16 @@ public class DBConnection {
     private static final String USER = "root";       // Change this to your MySQL username if different
     private static final String PASSWORD = "291006"; // Change this to your MySQL password
 
-    // Static variable to hold the single connection instance
-    private static Connection connection = null;
-
-    // Private constructor prevents instantiation from other classes
-    private DBConnection() {
-    }
-
     /**
-     * Gets the database connection instance.
-     * If it doesn't exist or is closed, it creates a new one.
+     * Gets a new database connection instance.
      * 
      * @return Connection object
      */
     public static Connection getConnection() {
         try {
-            if (connection == null || connection.isClosed()) {
-                // Explicitly load the MySQL driver (optional in newer JDBC versions, but good practice)
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                System.out.println("Database connected successfully.");
-            }
+            // Explicitly load the MySQL driver (optional in newer JDBC versions, but good practice)
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (ClassNotFoundException e) {
             System.err.println("MySQL Driver not found. Please add the JDBC jar to your project.");
             e.printStackTrace();
@@ -44,20 +33,14 @@ public class DBConnection {
             System.err.println("Database connection failed. Check your URL, username, and password.");
             e.printStackTrace();
         }
-        return connection;
+        return null;
     }
 
     /**
      * Closes the database connection.
+     * (Deprecated: Connections are now managed via try-with-resources in DAOs)
      */
     public static void closeConnection() {
-        if (connection != null) {
-            try {
-                connection.close();
-                System.out.println("Database connection closed.");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        // Obsolete
     }
 }

@@ -5,6 +5,7 @@ import dao.CategoryDAOImpl;
 import model.Budget;
 import model.Category;
 import utils.SessionManager;
+import utils.ui.Theme;
 import utils.ui.RoundedPanel;
 import utils.ui.ToastNotification;
 import com.formdev.flatlaf.FlatClientProperties;
@@ -25,7 +26,7 @@ public class BudgetsPanel extends JPanel {
 
     public BudgetsPanel() {
         setLayout(new BorderLayout());
-        setBackground(new Color(244, 247, 252));
+        setBackground(Theme.getBgApp());
         setBorder(new EmptyBorder(20, 30, 20, 30));
 
         initComponents();
@@ -66,7 +67,7 @@ public class BudgetsPanel extends JPanel {
         add(headerPanel, BorderLayout.NORTH);
 
         // --- Table Area ---
-        RoundedPanel cardPanel = new RoundedPanel(20, Color.WHITE);
+        RoundedPanel cardPanel = new RoundedPanel(20, Theme.getBgPanel());
         cardPanel.setLayout(new BorderLayout());
         cardPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
@@ -86,7 +87,7 @@ public class BudgetsPanel extends JPanel {
 
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
-        scrollPane.getViewport().setBackground(Color.WHITE);
+        scrollPane.getViewport().setBackground(Theme.getBgPanel());
         cardPanel.add(scrollPane, BorderLayout.CENTER);
 
         add(cardPanel, BorderLayout.CENTER);

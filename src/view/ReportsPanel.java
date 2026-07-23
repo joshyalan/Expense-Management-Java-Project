@@ -4,6 +4,7 @@ import dao.ExpenseDAOImpl;
 import model.Expense;
 import utils.ReportGenerator;
 import utils.SessionManager;
+import utils.ui.Theme;
 import utils.ui.RoundedPanel;
 import utils.ui.ToastNotification;
 import com.formdev.flatlaf.FlatClientProperties;
@@ -20,7 +21,7 @@ public class ReportsPanel extends JPanel {
 
     public ReportsPanel() {
         setLayout(new BorderLayout());
-        setBackground(new Color(244, 247, 252));
+        setBackground(Theme.getBgApp());
         setBorder(new EmptyBorder(40, 50, 40, 50));
 
         initComponents();
@@ -54,7 +55,7 @@ public class ReportsPanel extends JPanel {
     }
 
     private RoundedPanel createExportCard(String title, String desc, String btnText, Color accentColor) {
-        RoundedPanel card = new RoundedPanel(20, Color.WHITE);
+        RoundedPanel card = new RoundedPanel(20, Theme.getBgPanel());
         card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
         card.setBorder(new EmptyBorder(30, 30, 30, 30));
         

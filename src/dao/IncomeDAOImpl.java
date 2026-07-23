@@ -10,7 +10,7 @@ public class IncomeDAOImpl implements IncomeDAO {
 
     @Override
     public boolean addIncome(Income income) {
-        String sql = "INSERT INTO income (user_id, account_id, category_id, amount, date, description, receipt_path) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO income (user_id, account_id, category_id, amount, date, time, description, receipt_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, income.getUserId());
@@ -18,8 +18,9 @@ public class IncomeDAOImpl implements IncomeDAO {
             pstmt.setInt(3, income.getCategoryId());
             pstmt.setDouble(4, income.getAmount());
             pstmt.setDate(5, income.getDate());
-            pstmt.setString(6, income.getDescription());
-            pstmt.setString(7, income.getReceiptPath());
+            pstmt.setTime(6, income.getTime());
+            pstmt.setString(7, income.getDescription());
+            pstmt.setString(8, income.getReceiptPath());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -29,16 +30,17 @@ public class IncomeDAOImpl implements IncomeDAO {
 
     @Override
     public boolean updateIncome(Income income) {
-        String sql = "UPDATE income SET account_id = ?, category_id = ?, amount = ?, date = ?, description = ?, receipt_path = ? WHERE id = ?";
+        String sql = "UPDATE income SET account_id = ?, category_id = ?, amount = ?, date = ?, time = ?, description = ?, receipt_path = ? WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, income.getAccountId());
             pstmt.setInt(2, income.getCategoryId());
             pstmt.setDouble(3, income.getAmount());
             pstmt.setDate(4, income.getDate());
-            pstmt.setString(5, income.getDescription());
-            pstmt.setString(6, income.getReceiptPath());
-            pstmt.setInt(7, income.getId());
+            pstmt.setTime(5, income.getTime());
+            pstmt.setString(6, income.getDescription());
+            pstmt.setString(7, income.getReceiptPath());
+            pstmt.setInt(8, income.getId());
             return pstmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -141,6 +143,7 @@ public class IncomeDAOImpl implements IncomeDAO {
             rs.getInt("category_id"),
             rs.getDouble("amount"),
             rs.getDate("date"),
+            rs.getTime("time"),
             rs.getString("description"),
             rs.getString("receipt_path"),
             rs.getTimestamp("created_at")

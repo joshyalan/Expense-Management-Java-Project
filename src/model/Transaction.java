@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
@@ -15,6 +16,7 @@ public abstract class Transaction {
     protected int accountId;
     protected double amount;
     protected Date date;
+    protected Time time;
     protected String description;
     protected String receiptPath;
     protected Timestamp createdAt;
@@ -22,12 +24,13 @@ public abstract class Transaction {
     public Transaction() {
     }
 
-    public Transaction(int userId, int accountId, int categoryId, double amount, Date date, String description, String receiptPath) {
+    public Transaction(int userId, int accountId, int categoryId, double amount, Date date, Time time, String description, String receiptPath) {
         this.userId = userId;
         this.accountId = accountId;
         this.categoryId = categoryId;
         this.amount = amount;
         this.date = date;
+        this.time = time;
         this.description = description;
         this.receiptPath = receiptPath;
     }
@@ -47,6 +50,9 @@ public abstract class Transaction {
 
     public Date getDate() { return date; }
     public void setDate(Date date) { this.date = date; }
+
+    public Time getTime() { return time; }
+    public void setTime(Time time) { this.time = time; }
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }

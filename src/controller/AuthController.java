@@ -59,6 +59,22 @@ public class AuthController {
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
         
         User newUser = new User(username, hashedPassword, email, fullName, "USER");
-        return userDAO.registerUser(newUser);
+        boolean registered = userDAO.registerUser(newUser);
+        
+        if (registered) {
+            // Seed default categories
+            User createdUser = userDAO.getUserByUsername(username);
+            if (createdUser != null) {
+                dao.CategoryDAOImpl categoryDAO = new dao.CategoryDAOImpl();
+                categoryDAO.seedDefaultCategories(createdUser.getId());
+                
+                // Seed a default account
+                dao.AccountDAOImpl accountDAO = new dao.AccountDAOImpl();
+                model.Account defaultAccount = new model.Account(createdUser.getId(), "Main Wallet", 0.0, "USD");
+                accountDAO.addAccount(defaultAccount);
+            }
+            return true;
+        }
+        return false;
     }
 }

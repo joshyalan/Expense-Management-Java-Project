@@ -74,6 +74,7 @@ CREATE TABLE income (
     category_id INT NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
     date DATE NOT NULL,
+    time TIME DEFAULT '00:00:00',
     description VARCHAR(255),
     receipt_path VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -91,6 +92,7 @@ CREATE TABLE expenses (
     category_id INT NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
     date DATE NOT NULL,
+    time TIME DEFAULT '00:00:00',
     description VARCHAR(255),
     receipt_path VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -197,14 +199,14 @@ INSERT INTO categories (user_id, name, type, icon, color) VALUES
 (1, 'Rent', 'EXPENSE', 'home', '#FF9800'),
 (1, 'Utilities', 'EXPENSE', 'bolt', '#2196F3');
 
-INSERT INTO income (user_id, account_id, category_id, amount, date, description) VALUES 
-(1, 1, 1, 5000.00, '2023-10-01', 'October Salary'),
-(1, 1, 2, 850.00, '2023-10-15', 'Web Design Project');
+INSERT INTO income (user_id, account_id, category_id, amount, date, time, description) VALUES 
+(1, 1, 1, 5000.00, '2023-10-01', '09:00:00', 'October Salary'),
+(1, 1, 2, 850.00, '2023-10-15', '14:30:00', 'Web Design Project');
 
-INSERT INTO expenses (user_id, account_id, category_id, amount, date, description) VALUES 
-(1, 1, 4, 1200.00, '2023-10-02', 'October Rent'),
-(1, 2, 3, 45.50, '2023-10-05', 'Groceries'),
-(1, 1, 5, 150.00, '2023-10-10', 'Electric Bill');
+INSERT INTO expenses (user_id, account_id, category_id, amount, date, time, description) VALUES 
+(1, 1, 4, 1200.00, '2023-10-02', '10:00:00', 'October Rent'),
+(1, 2, 3, 45.50, '2023-10-05', '18:45:00', 'Groceries'),
+(1, 1, 5, 150.00, '2023-10-10', '08:15:00', 'Electric Bill');
 
 INSERT INTO budgets (user_id, category_id, amount, month, year) VALUES 
 (1, 3, 400.00, 10, 2023);
