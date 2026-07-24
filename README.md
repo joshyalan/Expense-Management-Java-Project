@@ -35,13 +35,13 @@ In an era of subscription-based web apps that own your financial data, Expense T
 | Feature | Description | Screenshot Reference |
 | :---: | :--- | :--- |
 | 🔐 **Authentication** | Secure BCrypt password hashing and session management. | *See Screenshots section* |
-| 📊 **Dashboard** | Dynamic widgets showing total balance, monthly flow, and health score. | `screenshots/dashboard.png` |
-| 🤖 **AI Insights** | Algorithmic analysis of spending patterns to detect anomalies. | `screenshots/ai_insights.png` |
-| 🎯 **Budgets** | Set and track monthly category budgets with visual progress bars. | `screenshots/budgets.png` |
-| 📈 **Charts** | JFreeChart integration for beautiful pie and bar charts of your spending. | `screenshots/charts.png` |
-| 🌙 **Dark Mode** | Seamless switching between light and dark themes via FlatLaf. | `screenshots/dark_mode.png` |
-| 📄 **PDF/Excel Export** | Generate professional reports using iText and Apache POI. | `screenshots/reports.png` |
-| ⚙️ **Settings** | Highly customizable currencies, UI themes, and account security. | `screenshots/settings.png` |
+| 📊 **Dashboard** | Dynamic widgets showing total balance, monthly flow, and health score. | `screenshots/dashboard.png.png` |
+| 🤖 **AI Insights** | Algorithmic analysis of spending patterns to detect anomalies. | `screenshots/aiinsights.png.png` |
+| 🎯 **Budgets** | Set and track monthly category budgets with visual progress bars. | `screenshots/budgets.png.png` |
+| 📈 **Charts** | JFreeChart integration for beautiful pie and bar charts of your spending. | `screenshots/dashboard.png.png` |
+| 🌙 **Dark Mode** | Seamless switching between light and dark themes via FlatLaf. | `screenshots/darkmode.png.png` |
+| 📄 **PDF/Excel Export** | Generate professional reports using iText and Apache POI. | `screenshots/reports.png.png` |
+| ⚙️ **Settings** | Highly customizable currencies, UI themes, and account security. | `screenshots/settings.png.png` |
 
 ---
 
@@ -54,8 +54,8 @@ In an era of subscription-based web apps that own your financial data, Expense T
 <br>
 Secure entry points with modern UI design and validation.
 <br><br>
-<img src="screenshots/login.png" width="400" alt="Login Screen">
-<img src="screenshots/register.png" width="400" alt="Register Screen">
+<img src="screenshots/login.png.png" width="400" alt="Login Screen">
+<img src="screenshots/register.png.png" width="400" alt="Register Screen">
 </details>
 
 <details>
@@ -63,9 +63,9 @@ Secure entry points with modern UI design and validation.
 <br>
 The central hub for all financial data, featuring dynamic cards and charts. Fully responsive to light/dark themes.
 <br><br>
-<img src="screenshots/dashboard.png" width="800" alt="Dashboard Light Mode">
+<img src="screenshots/dashboard.png.png" width="800" alt="Dashboard Light Mode">
 <br><br>
-<img src="screenshots/dark_mode.png" width="800" alt="Dashboard Dark Mode">
+<img src="screenshots/darkmode.png.png" width="800" alt="Dashboard Dark Mode">
 </details>
 
 <details>
@@ -73,9 +73,9 @@ The central hub for all financial data, featuring dynamic cards and charts. Full
 <br>
 Detailed views for managing granular data.
 <br><br>
-<img src="screenshots/transactions.png" width="800" alt="Transactions View">
+<img src="screenshots/transactions.png.png" width="800" alt="Transactions View">
 <br><br>
-<img src="screenshots/budgets.png" width="800" alt="Budgets View">
+<img src="screenshots/budgets.png.png" width="800" alt="Budgets View">
 </details>
 
 <details>
@@ -83,9 +83,9 @@ Detailed views for managing granular data.
 <br>
 Intelligent analytics and exportable reports.
 <br><br>
-<img src="screenshots/ai_insights.png" width="800" alt="AI Insights">
+<img src="screenshots/aiinsights.png.png" width="800" alt="AI Insights">
 <br><br>
-<img src="screenshots/reports.png" width="800" alt="Reports Module">
+<img src="screenshots/reports.png.png" width="800" alt="Reports Module">
 </details>
 
 ---
