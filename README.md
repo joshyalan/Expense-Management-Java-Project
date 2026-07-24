@@ -1,280 +1,176 @@
 <div align="center">
+  <img src="https://raw.githubusercontent.com/mgjos/Expense-Tracker-Pro/main/screenshots/logo.png" alt="Expense Tracker Pro Logo" width="150" height="150">
+
+  # Expense Tracker Pro
   
-# 📊 Enterprise Java Expense Tracker
+  **Your Personal Financial Command Center**
 
-[![Java Version](https://img.shields.io/badge/Java-11%2B-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.oracle.com/java/)
-[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg?style=for-the-badge)](CONTRIBUTING.md)
-
-**A professional, robust, and full-stack Desktop Application built with Java Swing, JDBC, and MySQL adhering to MVC Architecture and SOLID principles.**
-
-[Features](#features) • [Screenshots](#screenshots) • [Installation](#installation-guide) • [Architecture](#project-architecture) • [Database](#database-design) • [Contact](#contact)
-
+  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+  [![Java: 11+](https://img.shields.io/badge/Java-11%2B-orange.svg)](https://www.oracle.com/java/)
+  [![MySQL: 8.0+](https://img.shields.io/badge/MySQL-8.0%2B-blue.svg)](https://www.mysql.com/)
+  [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
+  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
+  
+  *Take control of your personal finances with AI-driven insights, beautiful dashboards, and robust data management.*
 </div>
 
 ---
 
-## 📖 Project Description
+## 📖 About The Project
 
-The **Expense Tracker** is a comprehensive desktop application designed to help users take control of their personal finances. Built primarily as an academic Project Based Learning (PBL) submission, this application is engineered to enterprise-grade standards, focusing heavily on Object-Oriented Programming (OOP) paradigms, clean code architecture, and a highly responsive user interface.
+**Expense Tracker Pro** is a modern, feature-rich desktop application built in Java, designed to help individuals and small businesses manage their financial health. It bridges the gap between complex enterprise financial software and overly simple mobile trackers by offering a professional-grade interface with powerful local data management.
 
-### ❓ The Problem It Solves
-Managing daily expenses, tracking income streams, and staying within monthly budget constraints is challenging when done manually on paper or unstructured spreadsheets. This software provides a unified dashboard to log transactions, visualize spending habits, set budget limits, and generate actionable financial reports.
+### Why It Was Built
+In an era of subscription-based web apps that own your financial data, Expense Tracker Pro was built to give users complete sovereignty over their data. By leveraging a local MySQL database and a secure Java backend, users get enterprise-level analytics and reporting without compromising their privacy.
 
-### 🎯 Target Audience
-- **University Evaluators & Professors:** Demonstrates mastery over core Java, JDBC, GUI design, and Database management.
-- **Students & Open Source Contributors:** Serves as a reference implementation of the Model-View-Controller (MVC) pattern in Java.
-- **Everyday Users:** Anyone looking to effectively track and organize their personal finances locally without relying on cloud subscriptions.
+### Real-World Use Cases
+- **Personal Finance:** Track daily expenses, set monthly budgets, and monitor savings goals.
+- **Freelancers:** Categorize business versus personal expenses and export detailed PDF/Excel reports for tax season.
+- **Small Teams:** Use multiple accounts (wallets, bank accounts, credit cards) to maintain clear cash flow visibility.
 
 ---
 
-## ✨ Features
+## ✨ Feature Highlights
 
-✅ **User Authentication:** Secure Registration, Login, and Password Hashing.  
-✅ **Interactive Dashboard:** High-level summary of total income, expenses, and current balance.  
-✅ **Add Expense & Income:** Log transactions with amount, date, dynamic category, and descriptions.  
-✅ **Edit & Delete Transactions:** Complete CRUD functionality for all financial records.  
-✅ **Dynamic Categories:** Create custom categories tailored to personal spending habits.  
-✅ **Budget Management:** Set monthly budget thresholds for specific categories.  
-✅ **Budget Alerts:** Notifications when spending approaches or exceeds predefined limits.  
-✅ **Analytical Charts:** Visual representation of spending habits using interactive Pie and Bar Charts.  
-✅ **Advanced Search & Filter:** Query historical data by date range, category, or amount.  
-✅ **Data Export:** Export transaction history and financial reports to **CSV** and **PDF** formats.  
-✅ **Profile Management:** Manage user details, update passwords, and handle preferences.  
+| Feature | Description | Screenshot Reference |
+| :---: | :--- | :--- |
+| 🔐 **Authentication** | Secure BCrypt password hashing and session management. | *See Screenshots section* |
+| 📊 **Dashboard** | Dynamic widgets showing total balance, monthly flow, and health score. | `screenshots/dashboard.png` |
+| 🤖 **AI Insights** | Algorithmic analysis of spending patterns to detect anomalies. | `screenshots/ai_insights.png` |
+| 🎯 **Budgets** | Set and track monthly category budgets with visual progress bars. | `screenshots/budgets.png` |
+| 📈 **Charts** | JFreeChart integration for beautiful pie and bar charts of your spending. | `screenshots/charts.png` |
+| 🌙 **Dark Mode** | Seamless switching between light and dark themes via FlatLaf. | `screenshots/dark_mode.png` |
+| 📄 **PDF/Excel Export** | Generate professional reports using iText and Apache POI. | `screenshots/reports.png` |
+| ⚙️ **Settings** | Highly customizable currencies, UI themes, and account security. | `screenshots/settings.png` |
 
 ---
 
 ## 📸 Screenshots
 
-> **Note:** Replace placeholders with actual application screenshots during final delivery.
+*(Note: These are placeholder references. Replace with actual images from the `/screenshots` folder).*
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center"><b>Login Screen</b><br><img src="docs/images/login.png" alt="Login Screen" width="400"/></td>
-      <td align="center"><b>Main Dashboard</b><br><img src="docs/images/dashboard.png" alt="Dashboard" width="400"/></td>
-    </tr>
-    <tr>
-      <td align="center"><b>Add Expense Form</b><br><img src="docs/images/add-expense.png" alt="Add Expense" width="400"/></td>
-      <td align="center"><b>Analytical Reports</b><br><img src="docs/images/report.png" alt="Reports" width="400"/></td>
-    </tr>
-  </table>
-</div>
+<details>
+<summary><b>1. Authentication (Login & Register)</b></summary>
+<br>
+Secure entry points with modern UI design and validation.
+<br><br>
+<img src="screenshots/login.png" width="400" alt="Login Screen">
+<img src="screenshots/register.png" width="400" alt="Register Screen">
+</details>
 
----
+<details>
+<summary><b>2. Main Dashboard & Dark Mode</b></summary>
+<br>
+The central hub for all financial data, featuring dynamic cards and charts. Fully responsive to light/dark themes.
+<br><br>
+<img src="screenshots/dashboard.png" width="800" alt="Dashboard Light Mode">
+<br><br>
+<img src="screenshots/dark_mode.png" width="800" alt="Dashboard Dark Mode">
+</details>
 
-## 🏗️ Project Architecture
+<details>
+<summary><b>3. Budgets & Transactions</b></summary>
+<br>
+Detailed views for managing granular data.
+<br><br>
+<img src="screenshots/transactions.png" width="800" alt="Transactions View">
+<br><br>
+<img src="screenshots/budgets.png" width="800" alt="Budgets View">
+</details>
 
-The application strictly follows the **Model-View-Controller (MVC)** architectural pattern to ensure separation of concerns, high maintainability, and scalability.
-
-- **Model (`src/model`)**: Defines the core entities (POJOs) like `User`, `Expense`, and `Category`. Ensures data encapsulation.
-- **View (`src/view`)**: Comprises all graphical user interface components built using Java Swing (Frames, Panels, Dialogs).
-- **Controller (`src/controller`)**: Acts as the bridge between the View and the Model. Handles user interactions, updates the UI, and communicates with the Services.
-- **DAO (`src/dao`)**: Data Access Objects. Isolates all database operations (SQL queries, `PreparedStatement`s) away from the business logic.
-- **Service (`src/service`)**: Contains complex business logic (e.g., calculating budget deficits, authenticating users) mediating between Controllers and DAOs.
-- **Database (`src/database`)**: Holds the SQL scripts for schema generation.
-- **Utils (`src/utils`)**: Shared utilities like `DBConnection` (Singleton pattern), Session management, and validation helpers.
-
----
-
-## 📁 Folder Structure
-
-```text
-Expense-Management-Java-Project/
-│
-├── src/
-│   ├── controller/      # UI logic and event listeners
-│   ├── dao/             # Data Access Objects (CRUD operations)
-│   ├── database/        # SQL scripts (schema.sql)
-│   ├── model/           # Encapsulated data entities
-│   ├── service/         # Business logic layer
-│   ├── utils/           # Utilities (DB connection, Session Manager)
-│   ├── view/            # GUI forms and panels (Java Swing)
-│   └── resources/
-│       ├── images/      # Application icons and assets
-│       └── reports/     # Generated PDF/CSV output
-│
-├── docs/                # UML Diagrams, Screenshots, and Manuals
-├── lib/                 # External dependencies (.jar files)
-└── README.md            # Project documentation
-```
+<details>
+<summary><b>4. AI Insights & Reports</b></summary>
+<br>
+Intelligent analytics and exportable reports.
+<br><br>
+<img src="screenshots/ai_insights.png" width="800" alt="AI Insights">
+<br><br>
+<img src="screenshots/reports.png" width="800" alt="Reports Module">
+</details>
 
 ---
 
-## 💻 Technologies Used
+## 🛠 Technology Stack
 
-| Technology / Tool | Purpose | Version / Details |
-| :--- | :--- | :--- |
-| **Java** | Core Programming Language | Java 11 or higher |
-| **Java Swing** | Graphical User Interface | Standard JDK |
-| **JDBC** | Database Connectivity API | Standard JDK |
-| **MySQL** | Relational Database Management | MySQL 8.0+ |
-| **MySQL Connector/J** | MySQL JDBC Driver | `8.0.33` (or similar) |
-| **JFreeChart** | Graph and Chart Generation | `1.5.3` |
-| **iText / Apache PDFBox** | PDF Report Generation | Standard API |
-| **IntelliJ IDEA / Eclipse**| Integrated Development Environment| Latest |
-| **Git & GitHub** | Version Control & Hosting | Latest |
+- **Core Language:** Java 11+
+- **UI Framework:** Java Swing with [FlatLaf](https://www.formdev.com/flatlaf/) for modern look-and-feel.
+- **Database:** MySQL 8.0+
+- **Database Connectivity:** JDBC (Data Access Object pattern)
+- **Build Tool:** Apache Maven
+- **Testing:** JUnit 5 & Mockito
+- **Reporting:** iText (PDF), Apache POI (Excel), JFreeChart (Visuals)
+- **Security:** jBCrypt (Password Hashing)
 
 ---
 
-## 🗄️ Database Design
+## 🏗 Architecture Overview
 
-The relational database (`expense_tracker_db`) enforces referential integrity through foreign keys and cascading operations.
+The application follows a clean, decoupled **Model-View-Controller (MVC)** and **N-Tier Architecture**.
 
-- **`users`**: Manages authentication credentials, emails, and roles.
-- **`categories`**: User-specific tags for transactions (e.g., *Food*, *Rent*, *Salary*).
-- **`income`**: Records incoming cash flow, linked to `users` and `categories`.
-- **`expenses`**: Records outgoing cash flow, linked to `users` and `categories`.
-- **`budgets`**: Tracks monthly spending limits mapped to a specific user and category.
-- **`notifications`**: Stores system alerts regarding budget limits and milestones.
-- **`reports`**: Maintains a history of generated user reports.
+1. **Presentation Layer (`src/main/java/view/`)**: Swing UI components utilizing modern layout managers and FlatLaf theming.
+2. **Controller Layer (`src/main/java/controller/`)**: Acts as the bridge between the UI and Services.
+3. **Business Logic Layer (`src/main/java/service/`)**: Contains complex logic such as AI insights, report generation, and financial health calculations.
+4. **Data Access Layer (`src/main/java/dao/`)**: Implements the DAO design pattern to decouple SQL queries from Java code.
+5. **Database Layer**: A structured MySQL relational database with enforced foreign keys and cascading deletes.
+
+*Check `docs/architecture.md` for the full visual architecture diagram.*
 
 ---
 
-## 🚀 Installation Guide
+## 🚀 Installation & Setup
 
-Follow these steps to set up the project on your local machine.
+### Prerequisites
+1. **Java Development Kit (JDK) 11** or higher.
+2. **MySQL Server** (8.0+ recommended) and MySQL Workbench.
+3. **Apache Maven**.
 
-### 1. Prerequisites
-- **JDK 11+** installed and environment variables configured.
-- **MySQL Server** installed and running locally.
-- A Java IDE (IntelliJ IDEA, Eclipse, or NetBeans).
+### 1. Database Setup
+1. Open MySQL Workbench.
+2. Open the script located at `src/main/java/database/schema.sql`.
+3. Execute the entire script to create the `expense_tracker_db` and all necessary tables.
 
-### 2. Clone the Repository
-```bash
-git clone https://github.com/yourusername/Expense-Management-Java-Project.git
-cd Expense-Management-Java-Project
-```
-
-### 3. Database Configuration
-1. Open your MySQL client (e.g., MySQL Workbench).
-2. Open the script located at `src/database/schema.sql`.
-3. Execute the entire script. This will automatically create the database `expense_tracker_db`, create all tables, and insert default sample data.
-
-### 4. Configure JDBC Connection
-Navigate to `src/utils/DBConnection.java` (or equivalent config file) and ensure the credentials match your local MySQL installation:
+### 2. Application Configuration
+1. Open `src/main/java/utils/DBConnection.java`.
+2. Update the credentials to match your local MySQL setup:
 ```java
-private static final String URL = "jdbc:mysql://localhost:3306/expense_tracker_db";
-private static final String USER = "root";       // Change to your MySQL username
-private static final String PASSWORD = "password"; // Change to your MySQL password
+private static final String USER = "root";
+private static final String PASSWORD = "your_mysql_password";
 ```
 
-### 5. Import and Run
-1. Open your IDE and select **Open/Import Project**.
-2. Select the `Expense-Management-Java-Project` folder.
-3. Ensure the **MySQL Connector JAR** (and `JFreeChart`/PDF libraries) are added to your project's Build Path / Dependencies.
-4. Locate `src/Main.java` and click **Run**.
+### 3. Build and Run
+Clone the repository and build via Maven:
+```bash
+git clone https://github.com/mgjos/Expense-Tracker-Pro.git
+cd Expense-Tracker-Pro
+mvn clean compile
+mvn exec:java -Dexec.mainClass="Main"
+```
+
+*Alternatively, open the project folder in IntelliJ IDEA / Eclipse and run `Main.java`.*
 
 ---
 
-## ⚙️ Configuration Details
+## 🗺 Roadmap (Future Improvements)
 
-If you need to customize the database setup, you can adjust the following parameters within your application's `DatabaseUtils` or properties file:
-
-- **Database Name**: Default is `expense_tracker_db`.
-- **Username**: Change `root` to your configured MySQL user.
-- **Password**: Enter your database server password.
-- **Port**: Default MySQL port is `3306`. If using XAMPP/WAMP, verify your port.
-
----
-
-## 🛠️ Usage
-
-1. **Launch the App:** Run the `Main` class.
-2. **Register/Login:** Create a new account or log in with the sample user (`john_doe` / `password123`).
-3. **Dashboard:** View your current financial snapshot.
-4. **Categories:** Navigate to the Categories panel to add custom expense/income tags.
-5. **Add Transaction:** Click 'Add Expense' or 'Add Income', fill in the amount, select a date, and assign a category.
-6. **Set Budgets:** Go to the Budgets panel to set limits on categories (e.g., maximum $300 on Food this month).
-7. **View Reports:** Access the Reports tab to view Pie charts of your spending and export the data to PDF/CSV.
-
----
-
-## 📐 UML Diagrams
-
-> **Note:** UML diagrams will be generated and placed in the `docs/` folder prior to final academic submission.
-
-*   **ER Diagram**: `docs/diagrams/er_diagram.png`
-*   **Use Case Diagram**: `docs/diagrams/use_case.png`
-*   **Class Diagram**: `docs/diagrams/class_diagram.png`
-*   **Activity Diagram**: `docs/diagrams/activity.png`
-*   **Sequence Diagram**: `docs/diagrams/sequence.png`
-
----
-
-## 🔮 Future Enhancements
-
-While this project is fully functional, potential future improvements include:
-- [ ] Integration with a Cloud Database (AWS RDS / Firebase).
-- [ ] Dark Mode UI Toggle.
-- [ ] Predictive expense analytics using basic Machine Learning (Weka).
-- [ ] Recurring expense automation (cron jobs).
-- [ ] Multi-currency support and live API exchange rates.
-
----
-
-## 🧪 Testing
-
-Extensive manual testing has been performed across all application modules:
-- **Unit Testing**: Core DAO operations were tested to ensure SQL integrity.
-- **Validation Testing**: Forms rigorously check for empty fields, negative numbers, and invalid date formats.
-- **Integration Testing**: Ensuring the UI correctly reflects database updates in real-time.
-
----
-
-## 🚧 Challenges Faced
-
-- **Swing Thread Management**: Ensuring the GUI remained responsive during heavy database calls by utilizing `SwingWorker` threads.
-- **Complex SQL Joins**: Displaying comprehensive transaction histories required complex `JOIN` operations between `Users`, `Expenses`, and `Categories` tables.
-- **Architecture Enforcement**: Strictly maintaining the MVC separation, ensuring the View never directly accessed the Database.
-
----
-
-## 📚 Learning Outcomes
-
-Through building this project, the following core concepts were heavily utilized and mastered:
-- **Object-Oriented Programming:** Extensive use of Inheritance, Polymorphism, Encapsulation, and Abstraction.
-- **Design Patterns:** Implementing the **Singleton** pattern for Database connections and **MVC** for system architecture.
-- **Database Normalization & JDBC:** Bridging the gap between a relational database and Java objects seamlessly.
-- **Exception Handling:** Building robust try-catch mechanisms to handle SQL exceptions and invalid user inputs gracefully.
+- [ ] **Version 2.1 (Q4 2026):** Cloud Sync capability via AWS S3 for database backups.
+- [ ] **Version 2.2:** OCR Receipt Scanning integration.
+- [ ] **Version 3.0:** Companion mobile application via RESTful Spring Boot API.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting Pull Requests.
 
 ---
 
-## 📜 License
+## 📝 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
-
-## 👤 Author
-
-**Student Name / Developer**
-- **GitHub:** [@yourusername](https://github.com/yourusername)
-- **LinkedIn:** [Your Name](https://linkedin.com/in/yourprofile)
-- **Email:** your.email@university.edu
-
----
-
-## 🙏 Acknowledgements
-
-- Thanks to our University Professors for their guidance and mentorship.
-- [Java Swing Oracle Documentation](https://docs.oracle.com/javase/tutorial/uiswing/)
-- [MySQL Documentation](https://dev.mysql.com/doc/)
-- The open-source community for providing excellent libraries like JFreeChart.
-
 <div align="center">
-  <i>If you found this project helpful, please consider giving it a ⭐!</i>
+  <b>Built with ❤️ by mgjos</b>
 </div>
